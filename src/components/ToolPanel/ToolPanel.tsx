@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
 import { Toolbar, Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from 'react';
 
-const ToolPanel = ({
-  onShapeSelect,
-}: {
+type ToolPanelsProps = {
   onShapeSelect: (shape: string) => void;
-}) => {
+  onCursorToggle: () => void;
+  isCursorMode: boolean;
+};
+
+function ToolPanel({
+  onShapeSelect,
+  onCursorToggle,
+  isCursorMode,
+}: ToolPanelsProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  console.log('anchorEl', anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -47,9 +54,14 @@ const ToolPanel = ({
           Треугольник
         </MenuItem>
       </Menu>
-      <Button>Курсор</Button>
+      <Button
+        onClick={onCursorToggle}
+        // color={isCursorMode ? 'primary' : 'default'}
+      >
+        Курсор {isCursorMode ? 'включен' : 'выключен'}
+      </Button>
     </Toolbar>
   );
-};
+}
 
 export default ToolPanel;

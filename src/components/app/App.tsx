@@ -1,15 +1,32 @@
+import { useState } from 'react';
 import Canvas from '../Canvas/Canvas';
 import ToolPanel from '../ToolPanel/ToolPanel';
 
-function App() {
-  const handleShapeSelect = (shape: string) => {
-    console.log('Форма выбрана:', shape);
+function App(): JSX.Element {
+  const [shapes, setShapes] = useState<{ type: string; id: string }[]>([]);
+  const [isCursorMode, setIsCursorMode] = useState(false);
+
+  const handleShapeSelect = (shapeType: string) => {
+    const newShape = {
+      type: shapeType,
+      id: `${shapeType}-${shapes.length + 1}`,
+    };
+    setShapes([...shapes, newShape]);
+    console.log('Форма добавлена:', shapeType);
+  };
+
+  const toggleCursorMode = () => {
+    setIsCursorMode(!isCursorMode);
   };
 
   return (
     <div>
-      <ToolPanel onShapeSelect={handleShapeSelect} />
-      <Canvas />
+      <ToolPanel
+        onShapeSelect={handleShapeSelect}
+        onCursorToggle={toggleCursorMode}
+        isCursorMode={isCursorMode}
+      />
+      <Canvas shapes={shapes} isCursorMode={isCursorMode} />
     </div>
   );
 }
