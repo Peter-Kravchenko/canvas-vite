@@ -1,12 +1,6 @@
 import { useState } from 'react';
-import {
-  Stage,
-  Layer,
-  Circle,
-  Rect,
-  RegularPolygon,
-  KonvaEventObject,
-} from 'react-konva';
+import { KonvaEventObject } from 'konva/lib/Node';
+import { Stage, Layer, Circle, Rect, RegularPolygon } from 'react-konva';
 import { rectangle, circle, polygon, STROKE_WIDTH } from '../../const';
 
 type Shapes = {
