@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Canvas from '../Canvas/Canvas';
-import ToolPanel from '../ToolPanel/ToolPanel';
+import Canvas from './components/Canvas/Canvas';
+import ToolPanel from './components/ToolPanel/ToolPanel';
 
 function App(): JSX.Element {
   const [shapes, setShapes] = useState<{ type: string; id: string }[]>([]);
