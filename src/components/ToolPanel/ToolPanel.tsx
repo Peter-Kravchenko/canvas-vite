@@ -15,16 +15,13 @@ function ToolPanel({
   isCursorMode,
 }: ToolPanelsProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  console.log('anchorEl', anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleSelect = (shape: string) => {
     onShapeSelect(shape);
     handleClose();
@@ -36,6 +33,7 @@ function ToolPanel({
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        variant={anchorEl ? 'contained' : 'outlined'}
       >
         Выбрать фигуру
       </Button>
@@ -56,7 +54,7 @@ function ToolPanel({
       </Menu>
       <Button
         onClick={onCursorToggle}
-        // color={isCursorMode ? 'primary' : 'default'}
+        variant={isCursorMode ? 'contained' : 'outlined'}
       >
         Курсор {isCursorMode ? 'включен' : 'выключен'}
       </Button>
